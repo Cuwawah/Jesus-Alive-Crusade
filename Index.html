@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JESUS ALIVE CRUSADE - Experience the Power</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- VARIABLES & GLOBAL STYLES --- */
+        :root {
+            --royal-blue: #002266;       /* Deep, primary blue */
+            --gold: #FFD700;             /* Standard Gold */
+            --gold-light: #FFEB8C;       /* Lighter gold for highlights */
+            --white: #FFFFFF;
+            --off-white: #F4F4F9;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            --transition-time: 0.4s;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--royal-blue);
+            background-color: var(--off-white);
+            overflow-x: hidden;
+        }
+
+        h1, h2 {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        .gold-text {
+            color: var(--gold);
+        }
+
+        /* ------------------------------------------------ */
+        /* --- PARALLAX HERO SECTION STYLES --- */
+        /* ------------------------------------------------ */
+        .hero-section {
+            background: var(--royal-blue);
+            background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-attachment: fixed; /* KEY PARALLAX RULE */
+            background-position: center;
+            background-repeat: no-repeat;
+            color: var(--white);
+            padding: 20px 0 80px 0;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            height: 80px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        /* NEW STYLES FOR LOGO IMAGES */
+        .church-logo img, .crusade-logo img {
+            height: 60px; /* Standard size */
+            width: auto;
+            max-width: 150px;
+            vertical-align: middle;
+        }
+
+        .logo {
+            /* These styles are removed/overridden by the img tag below */
+            padding: 0; 
+            border: none;
+        }
+        /* END NEW LOGO STYLES */
+
+        .hero-content {
+            max-width: 900px;
+            margin: auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .main-title {
+            font-size: 4.5rem;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 30px;
+        }
+
+        .event-details p {
+            font-size: 1.1rem;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-bottom: 40px;
+        }
+
+        /* --- COUNTDOWN TIMER STYLES --- */
+        #countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .timer-box {
+            background: var(--gold);
+            color: var(--royal-blue);
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-align: center;
+            min-width: 80px;
+            box-shadow: var(--shadow);
+        }
+
+        .timer-box span {
+            display: block;
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+
+        /* --- CTA BUTTON STYLE & ANIMATION --- */
+        .cta-button {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--royal-blue);
+            padding: 18px 40px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all var(--transition-time) ease;
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.6);
+            text-transform: uppercase;
+        }
+
+        .cta-button:hover {
+            background: var(--gold-light);
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.8);
+        }
+
+        /* Animation: Pulsing CTA */
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 5px 20px rgba(255, 215, 0, 0.6); }
+            50% { transform: scale(1.02); box-shadow: 0 5px 30px rgba(255, 215, 0, 0.9); }
+            100% { transform: scale(1); box-shadow: 0 5px 20px rgba(255, 215, 0, 0.6); }
+        }
+
+        .animate-pulse {
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        /* --- SECTION STYLES --- */
+        .section-about, .section-register {
+            padding: 80px 5%;
+            text-align: center;
+            position: relative; 
+            z-index: 2; 
+        }
+
+        .section-about {
+            background-color: var(--white);
+        }
+
+        .section-register {
+            background-color: var(--royal-blue);
+            color: var(--white);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: var(--gold);
+            border-radius: 2px;
+        }
+
+        /* --- CARD GRID DESIGN --- */
+        .card-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: var(--off-white);
+            color: var(--royal-blue);
+            padding: 30px;
+            border-radius: 10px;
+            width: 300px;
+            box-shadow: var(--shadow);
+            transition: transform var(--transition-time), box-shadow var(--transition-time);
+            border-top: 5px solid var(--gold);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 34, 102, 0.3);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--gold);
+        }
+
+        /* --- REGISTRATION FORM DESIGN --- */
+        .register-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        #crusade-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        #crusade-form input {
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        #crusade-form input:focus {
+            border-color: var(--gold);
+            outline: none;
+            box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+
+        .submit-button {
+            background: var(--gold);
+            color: var(--royal-blue);
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color var(--transition-time), transform var(--transition-time);
+            text-transform: uppercase;
+        }
+
+        .submit-button:hover {
+            background: var(--gold-light);
+            transform: scale(1.02);
+        }
+
+        .form-footer {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: var(--gold-light);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #001A4D;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 2;
+        }
+
+
+        /* --- KEYFRAME ANIMATIONS --- */
+        @keyframes fadeInSlide {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            opacity: 0;
+            animation: fadeInSlide 1s forwards;
+        }
+
+        .delay-2 { animation-delay: 0.5s; }
+        .delay-3 { animation-delay: 1s; }
+        .delay-4 { animation-delay: 1.5s; }
+
+        /* Shine/Shimmer Effect for Gold Text */
+        .section-title.gold-text {
+            background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold), var(--gold-light));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 5s infinite linear;
+        }
+
+        @keyframes shimmer {
+            to {
+                background-position: -200% center;
+            }
+        }
+
+        /* --- MEDIA QUERIES (RESPONSIVENESS) --- */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 3rem;
+            }
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            .header-bar {
+                height: auto;
+                flex-direction: column;
+                padding-top: 10px;
+                position: static;
+            }
+            /* Adjust logo sizing for mobile */
+            .church-logo img, .crusade-logo img {
+                height: 50px; /* Slightly smaller on mobile */
+                max-width: 120px;
+            }
+            .card-grid {
+                flex-direction: column;
+                gap: 20px;
+                align-items: center;
+            }
+            .card {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero-section">
+        <div class="header-bar">
+            <div class="logo church-logo">
+                <img src="church-logo.png" alt="Christ Embassy Ministry Centre Ibadan Logo">
+            </div>
+            <div class="logo crusade-logo">
+                <img src="crusade-logo.png" alt="Jesus Alive Crusade Logo">
+            </div>
+        </div>
+
+        <div class="hero-content">
+            <h1 class="main-title animate-in">JESUS <span class="gold-text">ALIVE</span> CRUSADE</h1>
+            <p class="subtitle animate-in delay-2">One Night of Miracles, Worship, and Transformation!</p>
+
+            <div class="event-details animate-in delay-3">
+                <p>📍 Abe Technical School Field | 🗓️ November 1st, 2025 | ⏰ **3:00 PM**</p>
+            </div>
+
+            <div id="countdown" class="animate-in delay-4">
+                <div class="timer-box"><span id="days">00</span> DAYS</div>
+                <div class="timer-box"><span id="hours">00</span> HRS</div>
+                <div class="timer-box"><span id="minutes">00</span> MIN</div>
+                <div class="timer-box"><span id="seconds">00</span> SEC</div>
+            </div>
+
+            <a href="#register" class="cta-button animate-pulse">REGISTER NOW & SECURE YOUR SEAT</a>
+        </div>
+    </header>
+
+    <section class="section-about">
+        <h2 class="section-title">WHAT TO EXPECT</h2>
+        <div class="card-grid">
+            <div class="card">
+                <h3>DIVINE HEALING</h3>
+                <p>Experience the power of God for instant healing and deliverance from sickness and oppression.</p>
+            </div>
+            <div class="card">
+                <h3>PROPHETIC WORD</h3>
+                <p>Receive a life-changing word that will guide your destiny and set you on a path to success.</p>
+            </div>
+            <div class="card">
+                <h3>INTENSE WORSHIP</h3>
+                <p>Join thousands in raising an altar of worship to the King of Kings. A true encounter!</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="register" class="section-register">
+        <h2 class="section-title gold-text">FREE REGISTRATION</h2>
+        <p class="register-subtitle">Secure your place for this life-altering event. It's quick and free!</p>
+
+        <form id="crusade-form" action="YOUR_GOOGLE_FORMS_SUBMISSION_URL_HERE" method="POST" target="_blank">
+            <input type="text" name="entry.123456" placeholder="Full Name" required>
+            <input type="email" name="entry.789012" placeholder="Email Address" required>
+            <input type="tel" name="entry.345678" placeholder="Phone Number (Optional)">
+            <button type="submit" class="submit-button">YES, I'M COMING!</button>
+        </form>
+        <p class="form-footer">You will receive your digital entry pass via email immediately.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Jesus Alive Crusade. All Rights Reserved. | Hosted by [Your Church Name]</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- COUNTDOWN TIMER LOGIC ---
+            // **UPDATED DATE**: November 1st, 2025 at 3:00 PM (15:00:00)
+            const crusadeDate = new Date("Nov 1, 2025 15:00:00").getTime();
+
+            const x = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = crusadeDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
+                document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+                document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+                document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("countdown").innerHTML = "<div class='timer-box'>IT IS HAPPENING NOW!</div>";
+                }
+            }, 1000);
+
+            // --- FORM SUBMISSION HANDLING (Allows submission to Google Forms URL) ---
+            const form = document.getElementById('crusade-form');
+
+            // NOTE: The target="_blank" on the form tag will open the Google Forms submission page in a new tab.
+            form.addEventListener('submit', function(e) {
+
+                // Alert the user that they are done on this page
+                alert("Thank you! Your registration is being processed. (Check the new tab for Google's confirmation.)");
+
+                // Reset the form immediately
+                setTimeout(() => {
+                    form.reset();
+                }, 100); 
+
+                // DO NOT USE e.preventDefault() HERE! The form MUST be allowed to submit to the action URL.
+            });
+        });
+    </script>
+</body>
+</html>

@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JESUS ALIVE CRUSADE</title>
+    <title>JESUS ALIVE CRUSADE - Experience the Power</title>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
 
     <style>
         /* --- VARIABLES & GLOBAL STYLES --- */
         :root {
             --royal-blue: #002266;       /* Deep, primary blue */
-            --gold: #FFD700;             /* Standard Gold */
-            --gold-light: #FFEB8C;       /* Lighter gold for highlights */
+            --gold: #D4AF37;             /* NEW: Classic Metallic Gold */
+            --gold-light: #FFD700;       /* Bright Gold for Highlights */
             --white: #FFFFFF;
             --off-white: #F4F4F9;
             --shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -39,7 +41,7 @@
         }
 
         .gold-text {
-            color: var(--gold);
+            color: var(--gold); /* Uses the new metallic gold */
         }
 
         /* ------------------------------------------------ */
@@ -49,7 +51,7 @@
             background: var(--royal-blue);
             background-image: radial-gradient(circle at center, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
             background-size: 40px 40px;
-            background-attachment: fixed; /* KEY PARALLAX RULE */
+            background-attachment: fixed; 
             background-position: center;
             background-repeat: no-repeat;
             color: var(--white);
@@ -77,7 +79,7 @@
             background-color: rgba(0, 0, 0, 0.2);
         }
 
-        /* NEW STYLES FOR LOGO IMAGES */
+        /* STYLES FOR LOGO IMAGES */
         .church-logo img, .crusade-logo img {
             height: 60px; /* Standard size */
             width: auto;
@@ -86,11 +88,10 @@
         }
 
         .logo {
-            /* These styles are removed/overridden by the img tag below */
             padding: 0; 
             border: none;
         }
-        /* END NEW LOGO STYLES */
+        /* END LOGO STYLES */
 
         .hero-content {
             max-width: 900px;
@@ -102,7 +103,7 @@
 
         .main-title {
             font-size: 4.5rem;
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.5); /* Updated shadow color for new gold */
             margin-bottom: 10px;
         }
 
@@ -160,21 +161,21 @@
             text-decoration: none;
             border-radius: 50px;
             transition: all var(--transition-time) ease;
-            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.6);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.6);
             text-transform: uppercase;
         }
 
         .cta-button:hover {
-            background: var(--gold-light);
+            background: var(--gold-light); /* Uses the bright gold as hover highlight */
             transform: scale(1.05);
             box-shadow: 0 8px 25px rgba(255, 215, 0, 0.8);
         }
 
-        /* Animation: Pulsing CTA */
+        /* Animation: Pulsing CTA (Uses the new gold for shadow) */
         @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 5px 20px rgba(255, 215, 0, 0.6); }
-            50% { transform: scale(1.02); box-shadow: 0 5px 30px rgba(255, 215, 0, 0.9); }
-            100% { transform: scale(1); box-shadow: 0 5px 20px rgba(255, 215, 0, 0.6); }
+            0% { transform: scale(1); box-shadow: 0 5px 20px rgba(212, 175, 55, 0.6); }
+            50% { transform: scale(1.02); box-shadow: 0 5px 30px rgba(212, 175, 55, 0.9); }
+            100% { transform: scale(1); box-shadow: 0 5px 20px rgba(212, 175, 55, 0.6); }
         }
 
         .animate-pulse {
@@ -248,15 +249,25 @@
             color: var(--gold);
         }
 
-        /* --- REGISTRATION FORM DESIGN --- */
+        /* --- REGISTRATION FORM DESIGN & QR CODE CONTAINER --- */
+        .register-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+            align-items: flex-start; /* Aligns items to the top */
+        }
+
         .register-subtitle {
             font-size: 1.1rem;
             margin-bottom: 30px;
+            width: 100%; 
         }
 
         #crusade-form {
+            width: 100%;
             max-width: 500px;
-            margin: 0 auto;
             display: flex;
             flex-direction: column;
             gap: 15px;
@@ -277,7 +288,7 @@
         #crusade-form input:focus {
             border-color: var(--gold);
             outline: none;
-            box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+            box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
         }
 
         .submit-button {
@@ -304,6 +315,27 @@
             color: var(--gold-light);
         }
 
+        /* QR Code Styling */
+        .qrcode-box {
+            background: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            color: var(--royal-blue);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            height: fit-content;
+        }
+        
+        #qrcode canvas, #qrcode img {
+            border: 5px solid var(--white);
+            background: var(--white);
+        }
+
+
         /* --- FOOTER --- */
         footer {
             background: #001A4D;
@@ -315,17 +347,10 @@
             z-index: 2;
         }
 
-
         /* --- KEYFRAME ANIMATIONS --- */
         @keyframes fadeInSlide {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .animate-in {
@@ -337,7 +362,7 @@
         .delay-3 { animation-delay: 1s; }
         .delay-4 { animation-delay: 1.5s; }
 
-        /* Shine/Shimmer Effect for Gold Text */
+        /* Shine/Shimmer Effect for Gold Text - Uses both gold colors */
         .section-title.gold-text {
             background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold), var(--gold-light));
             background-size: 200% auto;
@@ -347,38 +372,29 @@
         }
 
         @keyframes shimmer {
-            to {
-                background-position: -200% center;
-            }
+            to { background-position: -200% center; }
         }
 
         /* --- MEDIA QUERIES (RESPONSIVENESS) --- */
         @media (max-width: 768px) {
-            .main-title {
-                font-size: 3rem;
-            }
-            .subtitle {
-                font-size: 1.2rem;
-            }
-            .header-bar {
-                height: auto;
-                flex-direction: column;
-                padding-top: 10px;
-                position: static;
-            }
-            /* Adjust logo sizing for mobile */
-            .church-logo img, .crusade-logo img {
-                height: 50px; /* Slightly smaller on mobile */
-                max-width: 120px;
-            }
-            .card-grid {
+            .main-title { font-size: 3rem; }
+            .subtitle { font-size: 1.2rem; }
+            .header-bar { height: auto; flex-direction: column; padding-top: 10px; position: static; }
+            .church-logo img, .crusade-logo img { height: 50px; max-width: 120px; }
+            
+            /* Responsive for Registration Section: Stack form and QR code */
+            .register-container {
                 flex-direction: column;
                 gap: 20px;
                 align-items: center;
             }
-            .card {
+            #crusade-form {
+                max-width: 100%;
                 width: 100%;
-                max-width: 400px;
+                padding: 30px 20px;
+            }
+            .qrcode-box {
+                margin-top: 20px;
             }
         }
     </style>
@@ -388,10 +404,10 @@
     <header class="hero-section">
         <div class="header-bar">
             <div class="logo church-logo">
-                <img src="IMG_4639.png" alt="Christ Embassy Ministry Centre Ibadan Logo">
+                <img src="church-logo.png" alt="Christ Embassy Ministry Centre Ibadan Logo">
             </div>
             <div class="logo crusade-logo">
-                <img src="IMG_4638.png" alt="Jesus Alive Crusade Logo">
+                <img src="crusade-logo.png" alt="Jesus Alive Crusade Logo">
             </div>
         </div>
 
@@ -400,7 +416,7 @@
             <p class="subtitle animate-in delay-2">One Night of Miracles, Worship, and Transformation!</p>
 
             <div class="event-details animate-in delay-3">
-                <p>📍 Abe Technical School Field | 🗓️ November 1st, 2025 | ⏰ 3:00 PM</p>
+                <p>📍 Abe Technical School Field | 🗓️ November 1st, 2025 | ⏰ **3:00 PM**</p>
             </div>
 
             <div id="countdown" class="animate-in delay-4">
@@ -410,7 +426,7 @@
                 <div class="timer-box"><span id="seconds">00</span> SEC</div>
             </div>
 
-            <a href="#register" class="cta-button animate-pulse">REGISTER NOW</a>
+            <a href="#register" class="cta-button animate-pulse">REGISTER NOW & SECURE YOUR SEAT</a>
         </div>
     </header>
 
@@ -433,16 +449,25 @@
     </section>
 
     <section id="register" class="section-register">
-        <h2 class="section-title gold-text">REGISTER NOW</h2>
+        <h2 class="section-title gold-text">FREE REGISTRATION</h2>
         <p class="register-subtitle">Secure your place for this life-altering event. It's quick and free!</p>
+        
+        <div class="register-container">
+            
+            <form id="crusade-form" action="YOUR_GOOGLE_FORMS_SUBMISSION_URL_HERE" method="POST" target="_blank">
+                <input type="text" name="entry.123456" placeholder="Full Name" required>
+                <input type="email" name="entry.789012" placeholder="Email Address" required>
+                <input type="tel" name="entry.345678" placeholder="Phone Number (Optional)">
+                <button type="submit" class="submit-button">YES, I'M COMING!</button>
+            </form>
 
-        <form id="crusade-form" action="YOUR_GOOGLE_FORMS_SUBMISSION_URL_HERE" method="POST" target="_blank">
-            <input type="text" name="entry.123456" placeholder="Full Name" required>
-            <input type="email" name="entry.789012" placeholder="Email Address" required>
-            <input type="tel" name="entry.345678" placeholder="Phone Number (Optional)">
-            <button type="submit" class="submit-button">YES, I'M COMING!</button>
-        </form>
-    
+            <div class="qrcode-box">
+                <p>Or **Scan to Register**</p>
+                <div id="qrcode"></div>
+            </div>
+        </div>
+
+        <p class="form-footer">You will receive your digital entry pass via email immediately.</p>
     </section>
 
     <footer>
@@ -476,21 +501,35 @@
                 }
             }, 1000);
 
-            // --- FORM SUBMISSION HANDLING (Allows submission to Google Forms URL) ---
+            // --- QR CODE GENERATION LOGIC ---
+            // ⚠️ CRITICAL: Replace the placeholder URL below with the *actual public link* to your Google Form (the link users click to open the form), NOT the submission URL.
+            const googleFormLink = "YOUR_ACTUAL_GOOGLE_FORM_PUBLIC_VIEW_LINK_HERE";
+            
+            if (document.getElementById("qrcode")) {
+                new QRCode(document.getElementById("qrcode"), {
+                    text: googleFormLink,
+                    width: 150,
+                    height: 150,
+                    colorDark : "#002266",
+                    colorLight : "#ffffff",
+                    correctLevel : QRCode.CorrectLevel.H
+                });
+            }
+
+            // --- FORM SUBMISSION HANDLING ---
             const form = document.getElementById('crusade-form');
 
-            // NOTE: The target="_blank" on the form tag will open the Google Forms submission page in a new tab.
             form.addEventListener('submit', function(e) {
 
                 // Alert the user that they are done on this page
                 alert("Thank you! Your registration is being processed. (Check the new tab for Google's confirmation.)");
-
+                
                 // Reset the form immediately
                 setTimeout(() => {
                     form.reset();
                 }, 100); 
 
-                // DO NOT USE e.preventDefault() HERE! The form MUST be allowed to submit to the action URL.
+                // The form is allowed to submit to the action URL.
             });
         });
     </script>

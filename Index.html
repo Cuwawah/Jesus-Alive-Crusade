@@ -294,6 +294,7 @@
         .qrcode-link {
             text-decoration: none; /* Remove underline */
             color: inherit; /* Don't turn it blue */
+            cursor: pointer; /* Ensure the hand pointer shows up for the whole box */
         }
 
         /* Make the QR code inside the link wrapper slightly interactive */
@@ -460,14 +461,14 @@
             }, 1000);
 
             // --- QR CODE GENERATION LOGIC ---
-            // ⚠️ CRITICAL: Replace the placeholder URL below with the *actual public link* to your Google Form.
-            const googleFormLink = "YOUR_ACTUAL_GOOGLE_FORM_PUBLIC_VIEW_LINK_HERE";
+            // ⭐️ YOUR PROVIDED URL HAS BEEN ADDED HERE ⭐️
+            const googleFormLink = "https://docs.google.com/forms/d/e/1FAIpQLSeo1dkt-ADg6nOmik-ieD6qo_tuXYjON5LSoWRgAZj7BG_R3Q/viewform?usp=dialog";
             
             const qrcodeDiv = document.getElementById("qrcode");
             const qrcodeLink = document.getElementById("qrcode-link");
 
             if (qrcodeDiv) {
-                // 1. Generate the QR code as before (this puts a canvas/img inside qrcodeDiv)
+                // 1. Generate the QR code with the actual link
                 new QRCode(qrcodeDiv, {
                     text: googleFormLink,
                     width: 200, 
@@ -477,10 +478,10 @@
                     correctLevel : QRCode.CorrectLevel.H
                 });
                 
-                // 2. Set the hyperlink's destination to the form link
+                // 2. Set the hyperlink's destination to the form link to make it clickable
                 if (qrcodeLink) {
                     qrcodeLink.href = googleFormLink;
-                    // Optional: open the link in a new tab so the current page remains
+                    // Open in a new tab for a better user experience
                     qrcodeLink.target = "_blank"; 
                 }
             }

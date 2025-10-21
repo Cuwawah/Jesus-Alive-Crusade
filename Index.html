@@ -12,7 +12,7 @@
         /* --- VARIABLES & GLOBAL STYLES --- */
         :root {
             --royal-blue: #002266;       /* Deep, primary blue */
-            --gold: #D4AF37;             /* NEW: Classic Metallic Gold */
+            --gold: #D4AF37;             /* Classic Metallic Gold */
             --gold-light: #FFD700;       /* Bright Gold for Highlights */
             --white: #FFFFFF;
             --off-white: #F4F4F9;
@@ -249,14 +249,14 @@
             color: var(--gold);
         }
 
-        /* --- REGISTRATION FORM DESIGN & QR CODE CONTAINER --- */
+        /* --- QR CODE CONTAINER (Updated to center the single element) --- */
         .register-container {
             display: flex;
-            justify-content: center;
+            justify-content: center; /* Center the QR code box */
             gap: 40px;
             max-width: 900px;
             margin: 0 auto;
-            align-items: flex-start; /* Aligns items to the top */
+            align-items: flex-start;
         }
 
         .register-subtitle {
@@ -265,60 +265,12 @@
             width: 100%; 
         }
 
-        #crusade-form {
-            width: 100%;
-            max-width: 500px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-        }
-
-        #crusade-form input {
-            padding: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        #crusade-form input:focus {
-            border-color: var(--gold);
-            outline: none;
-            box-shadow: 0 0 5px rgba(212, 175, 55, 0.5);
-        }
-
-        .submit-button {
-            background: var(--gold);
-            color: var(--royal-blue);
-            padding: 15px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background-color var(--transition-time), transform var(--transition-time);
-            text-transform: uppercase;
-        }
-
-        .submit-button:hover {
-            background: var(--gold-light);
-            transform: scale(1.02);
-        }
-
-        .form-footer {
-            margin-top: 15px;
-            font-size: 0.9rem;
-            color: var(--gold-light);
-        }
-
+        /* Removed form-specific styles */
+        
         /* QR Code Styling */
         .qrcode-box {
             background: var(--white);
-            padding: 20px;
+            padding: 30px; /* Increased padding slightly */
             border-radius: 10px;
             box-shadow: var(--shadow);
             text-align: center;
@@ -326,16 +278,25 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 15px; /* Increased gap */
             height: fit-content;
+            border: 5px solid var(--gold); /* Added a border to make it pop */
+            max-width: 300px; /* Constrain size */
+        }
+        
+        .qrcode-box p {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--royal-blue);
         }
         
         #qrcode canvas, #qrcode img {
-            border: 5px solid var(--white);
-            background: var(--white);
+            /* Removed internal border/background as it's now on the box */
+            /* The qrcode library generates a canvas/image element here */
         }
 
-
+        /* Removed form-footer since it was tied to the form submission */
+        
         /* --- FOOTER --- */
         footer {
             background: #001A4D;
@@ -382,19 +343,15 @@
             .header-bar { height: auto; flex-direction: column; padding-top: 10px; position: static; }
             .church-logo img, .crusade-logo img { height: 50px; max-width: 120px; }
             
-            /* Responsive for Registration Section: Stack form and QR code */
+            /* Responsive for Registration Section: Ensure centering */
             .register-container {
                 flex-direction: column;
                 gap: 20px;
                 align-items: center;
             }
-            #crusade-form {
-                max-width: 100%;
-                width: 100%;
-                padding: 30px 20px;
-            }
             .qrcode-box {
                 margin-top: 20px;
+                max-width: 90%; /* Allow it to take more space on small screens */
             }
         }
     </style>
@@ -426,7 +383,7 @@
                 <div class="timer-box"><span id="seconds">00</span> SEC</div>
             </div>
 
-            <a href="#register" class="cta-button animate-pulse">REGISTER NOW & SECURE YOUR SEAT</a>
+            <a href="#register" class="cta-button animate-pulse">GET YOUR FREE ENTRY PASS</a>
         </div>
     </header>
 
@@ -449,25 +406,18 @@
     </section>
 
     <section id="register" class="section-register">
-        <h2 class="section-title gold-text">FREE REGISTRATION</h2>
-        <p class="register-subtitle">Secure your place for this life-altering event. It's quick and free!</p>
+        <h2 class="section-title gold-text">FREE ENTRY PASS</h2>
+        <p class="register-subtitle">Scan the QR code below with your phone to get your official digital entry pass now. It's quick and free!</p>
         
         <div class="register-container">
             
-            <form id="crusade-form" action="YOUR_GOOGLE_FORMS_SUBMISSION_URL_HERE" method="POST" target="_blank">
-                <input type="text" name="entry.123456" placeholder="Full Name" required>
-                <input type="email" name="entry.789012" placeholder="Email Address" required>
-                <input type="tel" name="entry.345678" placeholder="Phone Number (Optional)">
-                <button type="submit" class="submit-button">YES, I'M COMING!</button>
-            </form>
-
             <div class="qrcode-box">
-                <p>Or **Scan to Register**</p>
+                <p>📲 **SCAN TO REGISTER**</p>
                 <div id="qrcode"></div>
+                <p style="font-size: 0.9rem; font-weight: 400; margin-top: 5px;">Opens your free registration form.</p>
             </div>
+            
         </div>
-
-        <p class="form-footer">You will receive your digital entry pass via email immediately.</p>
     </section>
 
     <footer>
@@ -508,29 +458,14 @@
             if (document.getElementById("qrcode")) {
                 new QRCode(document.getElementById("qrcode"), {
                     text: googleFormLink,
-                    width: 150,
-                    height: 150,
+                    width: 200, /* Increased size for focus */
+                    height: 200,
                     colorDark : "#002266",
                     colorLight : "#ffffff",
                     correctLevel : QRCode.CorrectLevel.H
                 });
             }
-
-            // --- FORM SUBMISSION HANDLING ---
-            const form = document.getElementById('crusade-form');
-
-            form.addEventListener('submit', function(e) {
-
-                // Alert the user that they are done on this page
-                alert("Thank you! Your registration is being processed. (Check the new tab for Google's confirmation.)");
-                
-                // Reset the form immediately
-                setTimeout(() => {
-                    form.reset();
-                }, 100); 
-
-                // The form is allowed to submit to the action URL.
-            });
+            // --- REMOVED FORM SUBMISSION HANDLING ---
         });
     </script>
 </body>

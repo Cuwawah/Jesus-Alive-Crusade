@@ -290,6 +290,12 @@
             color: var(--royal-blue);
         }
         
+        /* New CSS to remove default link styling from the QR code's link wrapper */
+        .qrcode-link {
+            text-decoration: none; /* Remove underline */
+            color: inherit; /* Don't turn it blue */
+        }
+
         #qrcode canvas, #qrcode img {
             /* Removed internal border/background as it's now on the box */
             /* The qrcode library generates a canvas/image element here */
@@ -407,13 +413,15 @@
 
     <section id="register" class="section-register">
         <h2 class="section-title gold-text">REGISTER NOW</h2>
-        <p class="register-subtitle">Scan the QR code below with your phone to get your official digital entry pass now. It's quick and free!</p>
+        <p class="register-subtitle">Scan the QR code below with your phone, **or simply tap/click it on this screen**, to get your official digital entry pass now. It's quick and free!</p>
         
         <div class="register-container">
             
             <div class="qrcode-box">
-                <p>📲 SCAN TO REGISTER</p>
-                <div id="qrcode"></div>
+                <p>📲 SCAN OR TAP TO REGISTER</p>
+                <a href="#" id="qrcode-link" class="qrcode-link">
+                    <div id="qrcode"></div>
+                </a>
                 <p style="font-size: 0.9rem; font-weight: 400; margin-top: 5px;">Opens your free registration form.</p>
             </div>
             
@@ -452,7 +460,7 @@
             }, 1000);
 
             // --- QR CODE GENERATION LOGIC ---
-            // ⚠️ CRITICAL: Replace the placeholder URL below with the *actual public link* to your Google Form (the link users click to open the form), NOT the submission URL.
+            // ⚠️ CRITICAL: Replace the placeholder URL below with the *actual public link* to your Google Form.
             const googleFormLink = "YOUR_ACTUAL_GOOGLE_FORM_PUBLIC_VIEW_LINK_HERE";
             
             if (document.getElementById("qrcode")) {
@@ -464,6 +472,16 @@
                     colorLight : "#ffffff",
                     correctLevel : QRCode.CorrectLevel.H
                 });
+                
+                // === START OF NEW CODE TO MAKE IT CLICKABLE ===
+                const qrcodeLink = document.getElementById("qrcode-link");
+                if (qrcodeLink) {
+                    // Set the hyperlink's destination to the form link
+                    qrcodeLink.href = googleFormLink;
+                    // Optional: open the link in a new tab so the current page remains
+                    qrcodeLink.target = "_blank"; 
+                }
+                // === END OF NEW CODE ===
             }
             // --- REMOVED FORM SUBMISSION HANDLING ---
         });

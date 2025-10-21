@@ -296,13 +296,13 @@
             color: inherit; /* Don't turn it blue */
         }
 
-        #qrcode canvas, #qrcode img {
-            /* Removed internal border/background as it's now on the box */
-            /* The qrcode library generates a canvas/image element here */
+        /* Make the QR code inside the link wrapper slightly interactive */
+        .qrcode-link:hover #qrcode canvas, .qrcode-link:hover #qrcode img {
+            opacity: 0.9;
+            transform: scale(1.02);
+            transition: opacity 0.3s, transform 0.3s;
         }
 
-        /* Removed form-footer since it was tied to the form submission */
-        
         /* --- FOOTER --- */
         footer {
             background: #001A4D;
@@ -463,27 +463,27 @@
             // ⚠️ CRITICAL: Replace the placeholder URL below with the *actual public link* to your Google Form.
             const googleFormLink = "YOUR_ACTUAL_GOOGLE_FORM_PUBLIC_VIEW_LINK_HERE";
             
-            if (document.getElementById("qrcode")) {
-                new QRCode(document.getElementById("qrcode"), {
+            const qrcodeDiv = document.getElementById("qrcode");
+            const qrcodeLink = document.getElementById("qrcode-link");
+
+            if (qrcodeDiv) {
+                // 1. Generate the QR code as before (this puts a canvas/img inside qrcodeDiv)
+                new QRCode(qrcodeDiv, {
                     text: googleFormLink,
-                    width: 200, /* Increased size for focus */
+                    width: 200, 
                     height: 200,
                     colorDark : "#002266",
                     colorLight : "#ffffff",
                     correctLevel : QRCode.CorrectLevel.H
                 });
                 
-                // === START OF NEW CODE TO MAKE IT CLICKABLE ===
-                const qrcodeLink = document.getElementById("qrcode-link");
+                // 2. Set the hyperlink's destination to the form link
                 if (qrcodeLink) {
-                    // Set the hyperlink's destination to the form link
                     qrcodeLink.href = googleFormLink;
                     // Optional: open the link in a new tab so the current page remains
                     qrcodeLink.target = "_blank"; 
                 }
-                // === END OF NEW CODE ===
             }
-            // --- REMOVED FORM SUBMISSION HANDLING ---
         });
     </script>
 </body>
